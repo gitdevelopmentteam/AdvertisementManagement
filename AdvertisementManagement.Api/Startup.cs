@@ -20,6 +20,7 @@ namespace AdvertisementManagement.Api
         {
             HttpConfiguration config = new HttpConfiguration();
             ConfigureOAuthTokenGeneration(app);
+            ConfigureOAuthTokenConsumption(app);
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
@@ -34,7 +35,7 @@ namespace AdvertisementManagement.Api
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("oauth/token"),
+                TokenEndpointPath = new PathString("/oauth/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new CustomOAuthProvider(),
                 AccessTokenFormat = new CustomJwtFormat("http://localhost:5854/")

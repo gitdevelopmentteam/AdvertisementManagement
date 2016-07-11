@@ -16,7 +16,7 @@ namespace AdvertisementManagement.Api.Providers
         {
             _issuer = issuer;
         }
-
+             
         public string Protect(AuthenticationTicket data)
         {
             if(data == null)
@@ -28,10 +28,13 @@ namespace AdvertisementManagement.Api.Providers
             var appSecret = ConfigurationManager.AppSettings["AppSecret"];
 
             var keyByteArray = TextEncodings.Base64Url.Decode(appSecret);
+
             var signingKey = new HmacSigningCredentials(keyByteArray);
+
             var issued = data.Properties.IssuedUtc;
             var expires = data.Properties.ExpiresUtc;
             var token = new JwtSecurityToken(_issuer, appId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
+
             var handler = new JwtSecurityTokenHandler();
             var jwt = handler.WriteToken(token);
             
