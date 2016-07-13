@@ -12,6 +12,7 @@ namespace AdvertisementManagement.Api.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
+            //Redirect(new Uri("http://localhost:5854/Error/NotFound"));
             return new string[] { "value1", "value2" };
         }
 
