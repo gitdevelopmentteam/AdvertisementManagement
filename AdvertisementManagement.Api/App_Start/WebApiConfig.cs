@@ -4,6 +4,7 @@ using System.Net.Http.Formatting;
 using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
+using System.Web.Http.Routing;
 using Elmah.Contrib.WebApi;
 
 namespace AdvertisementManagement.Api
@@ -20,15 +21,18 @@ namespace AdvertisementManagement.Api
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional },
-                constraints: new { controller = GetControllerNames()}
+                defaults: new { controller = "Home", id = RouteParameter.Optional },
+
+                // constraint required so this route only matches valid controller names
+                constraints: new { controller = GetControllerNames() }
             );
 
             config.Routes.MapHttpRoute(
                 name: "NotFound",
-                routeTemplate: "notfound",
-                defaults: new {controller = "Error", action = "NotFound" });
-                
+                routeTemplate: "{*path}",
+                defaults: new { controller = "Error", action = "NotFound" });
+
+            //config.Routes.MapHttpRoute("AXD", "{resource}.axd/{*pathInfo}", null, null, new StopRoutingHandler());
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

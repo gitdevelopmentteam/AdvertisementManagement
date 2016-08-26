@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdvertisementManagement.Common.Entities
 {
@@ -9,5 +10,8 @@ namespace AdvertisementManagement.Common.Entities
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public virtual IList<AttributeValue> AttributeValues { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

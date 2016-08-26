@@ -50,9 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Attribute.cs" />
+    <Compile Include="Entities\AttributeType.cs" />
+    <Compile Include="Entities\AttributeValue.cs" />
+    <Compile Include="Entities\AuctionItem.cs" />
+    <Compile Include="Entities\Bid.cs" />
     <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Payment.cs" />
+    <Compile Include="Entities\PaymentMethod.cs" />
+    <Compile Include="Entities\PaymentMethodStatus.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductType.cs" />
+    <Compile Include="Entities\Status.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

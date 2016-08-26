@@ -9,6 +9,7 @@ using Owin;
 using System;
 using System.Configuration;
 using System.Web.Http;
+using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(AdvertisementManagement.Api.Startup))]
 
@@ -22,6 +23,7 @@ namespace AdvertisementManagement.Api
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app);
             WebApiConfig.Register(config);
+            //RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.UseWebApi(config);

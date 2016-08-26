@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdvertisementManagement.Common.Entities
@@ -13,7 +14,8 @@ namespace AdvertisementManagement.Common.Entities
         public decimal Price { get; set; }
 
         [ForeignKey("ProductType")]
-        public int? ProductTypeId { get; set; }
-        public ProductType ProductType { get; set; }
+        public int ProductTypeId { get; set; }
+        public virtual ProductType ProductType { get; set; }
+        public virtual IList<AttributeValue> AttributeValues { get; set; }
     }
 }

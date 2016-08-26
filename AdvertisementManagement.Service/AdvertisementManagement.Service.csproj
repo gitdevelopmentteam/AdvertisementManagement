@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityService.cs" />
+    <Compile Include="IEntityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdvertisementManagement.Common\AdvertisementManagement.Common.csproj">
+      <Project>{6f024235-b32d-4289-9183-b5a638e0addf}</Project>
+      <Name>AdvertisementManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdvertisementManagement.Repository\AdvertisementManagement.Repository.csproj">
+      <Project>{7ef82dbd-b5ac-4119-842d-e7c1b55cdb59}</Project>
+      <Name>AdvertisementManagement.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

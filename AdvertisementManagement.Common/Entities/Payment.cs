@@ -2,12 +2,13 @@
 
 namespace AdvertisementManagement.Common.Entities
 {
-    public class Attribute: IEntity
+    public class Payment: IEntity
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        [Required]
+        public PaymentMethodStatus PaymentMethodStatus { get; set; }
     }
 }
