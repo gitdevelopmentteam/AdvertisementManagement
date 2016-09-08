@@ -1,22 +1,24 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AdvertisementManagement.Common.Entities;
+using AdvertisementManagement.Repository;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
 namespace AdvertisementManagement.Api.Infrastucture
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<User>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
+        public ApplicationUserManager(IUserStore<User> store) : base(store)
         {
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var appDbContext = context.Get<ApplicationDbContext>();
-            var appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDbContext));
+            var appUserManager = new ApplicationUserManager(new UserStore<User>(appDbContext));
 
-            appUserManager.UserValidator = new UserValidator<ApplicationUser>(appUserManager)
+            appUserManager.UserValidator = new UserValidator<User>(appUserManager)
             {
                 AllowOnlyAlphanumericUserNames = true,
                 RequireUniqueEmail = true
@@ -35,7 +37,7 @@ namespace AdvertisementManagement.Api.Infrastucture
             var dataProtectionProvider = options.DataProtectionProvider;
             if(dataProtectionProvider!= null)
             {
-                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
+                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"))
                 {
                     //Reset password and email confirmation
                     TokenLifespan = new System.TimeSpan(6)

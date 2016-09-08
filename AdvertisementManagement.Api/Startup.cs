@@ -10,6 +10,8 @@ using System;
 using System.Configuration;
 using System.Web.Http;
 using System.Web.Routing;
+using AdvertisementManagement.Common;
+using AdvertisementManagement.Repository;
 
 [assembly: OwinStartup(typeof(AdvertisementManagement.Api.Startup))]
 

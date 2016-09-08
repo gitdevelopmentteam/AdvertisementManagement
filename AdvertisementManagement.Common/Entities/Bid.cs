@@ -13,7 +13,7 @@ namespace AdvertisementManagement.Common.Entities
         [Required]
         public decimal Price { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey("AuctionItem")]
         public int AuctionItemId { get; set; }
         public string Comment { get; set; }

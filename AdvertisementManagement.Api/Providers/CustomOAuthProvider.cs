@@ -1,14 +1,8 @@
-﻿using Microsoft.Owin.Security.OAuth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.Owin;
+﻿using System.Threading.Tasks;
 using AdvertisementManagement.Api.Infrastucture;
-using System.Security.Claims;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OAuth;
 
 namespace AdvertisementManagement.Api.Providers
 {
@@ -26,7 +20,7 @@ namespace AdvertisementManagement.Api.Providers
             var allowedOrigin = "*";
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
             var appUserManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-            ApplicationUser appUser = await appUserManager.FindAsync(context.UserName, context.Password);
+            var appUser = await appUserManager.FindAsync(context.UserName, context.Password);
 
             if(appUser == null)
             {
@@ -40,7 +34,7 @@ namespace AdvertisementManagement.Api.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await appUser.GenerateUserIdentityAsync(appUserManager, "JWT");
+            var oAuthIdentity = await appUser.GenerateUserIdentityAsync(appUserManager, "JWT");
          
             var ticket = new AuthenticationTicket(oAuthIdentity, null);
 

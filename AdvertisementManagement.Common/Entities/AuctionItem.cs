@@ -22,7 +22,7 @@ namespace AdvertisementManagement.Common.Entities
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Comment { get; set; }
         [Required]
         public Status Status { get; set; }
